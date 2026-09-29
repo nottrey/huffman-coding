@@ -20,36 +20,6 @@ The application compresses plain text by assigning shorter bit sequences to freq
 
 ---
 
-## Algorithmic Workflow
-
-1. **Frequency Analysis (`buildCountQueue`):**
-   * Scans input text and accumulates ASCII symbol counts using an index-mapped frequency table ($128$-element ASCII array).
-   * Constructs leaf nodes for each active symbol and inserts them into a custom-sorted linked list.
-
-2. **Greedy Huffman Tree Construction (`buildTree`):**
-   * Repeatedly extracts the two lowest-frequency nodes from the sorted list.
-   * Merges them under a new parent node whose frequency is the sum of its children.
-   * Re-inserts the parent node back into the sorted linked list until a single root tree remains.
-
-3. **Prefix Code Generation (`encodeChar`):**
-   * Recursively traverses `symbolTree` from root to leaf to dynamically generate binary path representations (`0` for left branches, `1` for right branches).
-
-4. **Bitstream Encoding (`encode`):**
-   * Maps each input character to its variable-length binary string representation to generate the full compressed output stream.
-
----
-
-## Complexity Analysis
-
-| Phase | Time Complexity | Space Complexity | Notes |
-| :--- | :--- | :--- | :--- |
-| **Frequency Count** | $\mathcal{O}(N)$ | $\mathcal{O}(1)$ | Fixed $128$-ASCII table allocation; $N$ = string length |
-| **Sorted List Insertion** | $\mathcal{O}(K^2)$ | $\mathcal{O}(K)$ | Insertion sort over $K$ unique characters |
-| **Tree Construction** | $\mathcal{O}(K^2)$ | $\mathcal{O}(K)$ | Merges $K$ leaf nodes into a single binary tree |
-| **Encoding Traversal** | $\mathcal{O}(N \cdot H)$ | $\mathcal{O}(H)$ | $H$ = height of Huffman tree |
-
----
-
 ## Tech Stack
 
 * **Language:** Java (JDK 8+)
