@@ -6,7 +6,7 @@ A custom, low-level implementation of the **Huffman Coding Algorithm** in Java. 
 
 ## Technical Overview
 
-The application compresses plain text by assigning shorter bit sequences to frequently occurring characters and longer sequences to rarer ones. Unlike standard library wrappers, this implementation builds its own priority queue and tree infrastructure from scratch to handle symbol frequency analysis, greedy binary tree assembly, and recursive code generation.
+The application compresses plain text by assigning shorter bit sequences to frequently occurring characters and longer sequences to rarer ones. This implementation builds its own priority queue and tree infrastructure from scratch to handle symbol frequency analysis, greedy binary tree assembly, and recursive code generation.
 
 ---
 
